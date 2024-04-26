@@ -40,11 +40,10 @@ class DbViewerNavigatorState extends State<DbViewerNavigator> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) async {
-        if (didPop) return;
+    return WillPopScope(
+      onWillPop: () async {
         goBack();
+        return true;
       },
       child: Navigator(
         key: _navigationKey,
